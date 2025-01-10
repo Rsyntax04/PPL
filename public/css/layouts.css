@@ -1,0 +1,149 @@
+body {
+  background-color: #f5f5f5;
+}
+
+.sidebar {
+  background-color: #002855;
+  color: white;
+  min-height: 100vh;
+  width: 250px;
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar a:hover,.sidebar-toggler:hover  {
+  background-color: #004080;
+  color: white;
+}
+
+.sidebar.collapsed a span,.sidebar.collapsed .sidebar-toggler a h3 {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-toggler{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-toggler i, .logout i {
+  font-size: 1.5rem;
+}
+
+.status-button {
+  border-radius: 30px;
+  padding: 5px 15px;
+}
+
+/* Poppins Font Classes */
+.poppins-thin { font-family: "Poppins", sans-serif; font-weight: 100; }
+.poppins-extralight { font-family: "Poppins", sans-serif; font-weight: 200; }
+.poppins-light { font-family: "Poppins", sans-serif; font-weight: 300; }
+.poppins-regular { font-family: "Poppins", sans-serif; font-weight: 400; }
+.poppins-medium { font-family: "Poppins", sans-serif; font-weight: 500; }
+.poppins-semibold { font-family: "Poppins", sans-serif; font-weight: 600; }
+.poppins-bold { font-family: "Poppins", sans-serif; font-weight: 700; }
+.poppins-extrabold { font-family: "Poppins", sans-serif; font-weight: 800; }
+.poppins-black { font-family: "Poppins", sans-serif; font-weight: 900; }
+/* General Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: "Poppins", sans-serif; }
+/* Full Container for Full-Page Layout */
+.full-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+/* Left Side: Form Section Styling */
+.form-section {
+    width: 70%;
+    padding: 40px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-box {
+    width: 90%;
+}
+/* Form Section Headings and Text */
+.title {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #122539;
+    font-weight: 700;
+    /* text-align: center; */
+}
+.form-section h3 {
+    color: #1F4062;
+    margin-bottom: 10px;
+    font-weight: 400;
+    text-align: center;
+}
+.form-section p {
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: 400;
+    text-align: center;
+}
+.form-section label {
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.form-section input[type="email"],
+.form-section input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.form-section .d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.form-section a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+.form-section a:hover {
+    text-decoration: underline;
+}
+.form-section button {
+    padding: 10px;
+    background-color: #1a73e8;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+.form-section button:hover {
+    background-color: #155ab6;
+}
+/* Right Side: Gradient Section with Overlay */
+.gradient-section {
+    width: 30%;
+    background: linear-gradient(to bottom right, #1a73e8, #77a6f7);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.overlay-image {
+    width: 100%;
+    height: 100%;
+    /* background-image: url('/images/overlay.png'); Ensure the image path is correct */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+}

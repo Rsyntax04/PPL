@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar dengan Overlay</title>
+    <!-- Tambahkan Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tambahkan Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        /* Atur sidebar */
+        #sidebar {
+            width: 250px;
+            background-color: #343a40;
+            height: 100vh;
+            transition: transform 0.3s ease;
+            position: fixed;
+            z-index: 1000;
+        }
+
+        /* Sembunyikan sidebar pada collapse */
+        #sidebar.collapsed {
+            transform: translateX(-250px);
+        }
+
+        /* Konten utama */
+        #content {
+            margin-left: 250px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Posisi konten ketika sidebar collapsed */
+        #content.collapsed {
+            margin-left: 0;
+        }
+
+        /* Overlay untuk efek gelap */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Warna hitam transparan */
+            display: none; /* Sembunyikan overlay */
+            z-index: 999; /* Letakkan di atas konten */
+        }
+
+        /* Tampilkan overlay ketika sidebar tidak collapsed */
+        #sidebar:not(.collapsed) ~ .overlay {
+            display: block;
+        }
+
+        .nav-link, .logout {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar" class="col-auto sidebar p-0 d-flex flex-column">
+        <div class="sidebar-toggler d-flex align-items-center justify-content-between p-3 pb-2 pt-2" id="toggle-btn">
+            <a href="" class="text-white text-decoration-none"><h3>Logo</h3></a>
+            <i class="bi bi-list text-white"></i>
+        </div>
+        <ul class="nav flex-column px-3">
+            <li class="nav-item mb-3">
+                <a href="#" class="nav-link text-white text-decoration-none"><i class="bi bi-check-circle"></i> <span>Kehadiran</span></a>
+            </li>
+            <li class="nav-item mb-3">
+                <a href="#" class="nav-link text-white text-decoration-none"><i class="bi bi-journal-text"></i> <span>Catatan</span></a>
+            </li>
+            <li class="nav-item mb-3">
+                <a href="#" class="nav-link text-white text-decoration-none"><i class="bi bi-gear"></i> <span>Pengaturan</span></a>
+            </li>
+        </ul>
+        <a href="#" class="logout nav-item mt-auto m-3 p-2 d-flex align-items-center text-danger text-decoration-none">
+            <i class="bi bi-box-arrow-right"></i> <span class="ms-2">Logout</span>
+        </a>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Konten Utama -->
+    <div id="content" class="p-3">
+                <!-- search bar -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input id="searchInput" type="text" class="form-control" placeholder="Cari Karyawan">
+                  </div>
+                  <!-- Attendance Table -->
+                  <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover mt-4" id="myTable">
+                      <thead class="bg-light">
+                        <tr>
+                          <th>Tanggal</th>
+                          <th>Hari</th>
+                          <th>Nama</th>
+                          <th>Status</th>
+                          <th>Total Kehadiran</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><i class="bi bi-circle-fill text-success"></i> Jun 22</td>
+                          <td>Kamis</td>
+                          <td>Benedict Wijaya</td>
+                          <td>Hadir</td>
+                          <td>100%</td>
+                        </tr>
+                        <tr>
+                          <td><i class="bi bi-circle-fill text-warning"></i> Jun 22</td>
+                          <td>Kamis</td>
+                          <td>Joseph Adiwiguna</td>
+                          <td>Terlambat</td>
+                          <td>80%</td>
+                        </tr>
+                        <tr>
+                          <td><i class="bi bi-circle-fill text-danger"></i> Jun 22</td>
+                          <td>Kamis</td>
+                          <td>Nathanael Kanaya C.</td>
+                          <td>Absen</td>
+                          <td>0%</td>
+                        </tr>
+                        <tr>
+                          <td><i class="bi bi-circle-fill text-success"></i> Jun 22</td>
+                          <td>Kamis</td>
+                          <td>Rafael Cavin E.T.</td>
+                          <td>Hadir</td>
+                          <td>100%</td>
+                        </tr>
+                        <tr>
+                          <td><i class="bi bi-circle-fill text-danger"></i> Jun 22</td>
+                          <td>Kamis</td>
+                          <td>Bambang Suhendra</td>
+                          <td>Absen</td>
+                          <td>0%</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('toggle-btn').addEventListener('click', function() {
+            var sidebar = document.getElementById('sidebar');
+            var content = document.getElementById('content');
+            sidebar.classList.toggle('collapsed'); // Toggle kelas collapsed
+            content.classList.toggle('collapsed'); // Toggle kelas collapsed pada konten
+        });
+
+        // Klik overlay untuk menutup sidebar
+        document.getElementById('overlay').addEventListener('click', function() {
+            var sidebar = document.getElementById('sidebar');
+            var content = document.getElementById('content');
+            sidebar.classList.add('collapsed'); // Tambahkan kelas collapsed pada sidebar
+            content.classList.add('collapsed'); // Tambahkan kelas collapsed pada konten
+        });
+    </script>
+</body>
+</html>
